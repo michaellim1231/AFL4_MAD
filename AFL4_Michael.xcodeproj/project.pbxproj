@@ -11,6 +11,7 @@
 		4C01CD6B2848DCED00C53AEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01CD6A2848DCED00C53AEB /* ContentView.swift */; };
 		4C01CD6D2848DCEE00C53AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C01CD6C2848DCEE00C53AEB /* Assets.xcassets */; };
 		4C01CD702848DCEE00C53AEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C01CD6F2848DCEE00C53AEB /* Preview Assets.xcassets */; };
+		4C01CD792848E21100C53AEB /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01CD782848E21100C53AEB /* Onboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		4C01CD6A2848DCED00C53AEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C01CD6C2848DCEE00C53AEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C01CD6F2848DCEE00C53AEB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4C01CD782848E21100C53AEB /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				4C01CD682848DCED00C53AEB /* AFL4_MichaelApp.swift */,
 				4C01CD6A2848DCED00C53AEB /* ContentView.swift */,
+				4C01CD7A2848E21A00C53AEB /* View */,
 				4C01CD6C2848DCEE00C53AEB /* Assets.xcassets */,
 				4C01CD6E2848DCEE00C53AEB /* Preview Content */,
 			);
@@ -65,6 +68,14 @@
 				4C01CD6F2848DCEE00C53AEB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4C01CD7A2848E21A00C53AEB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C01CD782848E21100C53AEB /* Onboarding.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C01CD792848E21100C53AEB /* Onboarding.swift in Sources */,
 				4C01CD6B2848DCED00C53AEB /* ContentView.swift in Sources */,
 				4C01CD692848DCED00C53AEB /* AFL4_MichaelApp.swift in Sources */,
 			);

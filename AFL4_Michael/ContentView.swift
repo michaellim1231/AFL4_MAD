@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("_shouldShowOnboarding") var shouldShowOnboarding: Bool = true
+    @State var shouldShowOnboarding: Bool = true
+
     var body: some View {
         NavigationView{
             VStack {
                 Text("Main Home")
             }
-            .navigationTitle("Home")
+            .navigationTitle("All Tasks")
         }
         .fullScreenCover(isPresented: $shouldShowOnboarding, content: { OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
-            
+
         })
     }
 }

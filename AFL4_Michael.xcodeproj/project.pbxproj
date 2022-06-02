@@ -12,6 +12,8 @@
 		4C01CD6D2848DCEE00C53AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C01CD6C2848DCEE00C53AEB /* Assets.xcassets */; };
 		4C01CD702848DCEE00C53AEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C01CD6F2848DCEE00C53AEB /* Preview Assets.xcassets */; };
 		4C01CD792848E21100C53AEB /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01CD782848E21100C53AEB /* Onboarding.swift */; };
+		4C01CD7F284946B100C53AEB /* TodoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C01CD7D284946B100C53AEB /* TodoModel.xcdatamodeld */; };
+		4C01CD822849476900C53AEB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01CD812849476900C53AEB /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		4C01CD6C2848DCEE00C53AEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C01CD6F2848DCEE00C53AEB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4C01CD782848E21100C53AEB /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		4C01CD7E284946B100C53AEB /* TodoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoModel.xcdatamodel; sourceTree = "<group>"; };
+		4C01CD812849476900C53AEB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,11 +57,13 @@
 		4C01CD672848DCED00C53AEB /* AFL4_Michael */ = {
 			isa = PBXGroup;
 			children = (
+				4C01CD802849475400C53AEB /* Managers */,
 				4C01CD682848DCED00C53AEB /* AFL4_MichaelApp.swift */,
 				4C01CD6A2848DCED00C53AEB /* ContentView.swift */,
 				4C01CD7A2848E21A00C53AEB /* View */,
 				4C01CD6C2848DCEE00C53AEB /* Assets.xcassets */,
 				4C01CD6E2848DCEE00C53AEB /* Preview Content */,
+				4C01CD7D284946B100C53AEB /* TodoModel.xcdatamodeld */,
 			);
 			path = AFL4_Michael;
 			sourceTree = "<group>";
@@ -76,6 +82,14 @@
 				4C01CD782848E21100C53AEB /* Onboarding.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4C01CD802849475400C53AEB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				4C01CD812849476900C53AEB /* CoreDataManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +163,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C01CD792848E21100C53AEB /* Onboarding.swift in Sources */,
+				4C01CD7F284946B100C53AEB /* TodoModel.xcdatamodeld in Sources */,
 				4C01CD6B2848DCED00C53AEB /* ContentView.swift in Sources */,
+				4C01CD822849476900C53AEB /* CoreDataManager.swift in Sources */,
 				4C01CD692848DCED00C53AEB /* AFL4_MichaelApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +365,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4C01CD7D284946B100C53AEB /* TodoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4C01CD7E284946B100C53AEB /* TodoModel.xcdatamodel */,
+			);
+			currentVersion = 4C01CD7E284946B100C53AEB /* TodoModel.xcdatamodel */;
+			path = TodoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4C01CD5D2848DCED00C53AEB /* Project object */;
 }

@@ -32,6 +32,7 @@ extension Priority {
     }
 }
 struct ContentView: View {
+//    @AppStorage("_shouldShowOnboarding") var shouldShowOnboarding: Bool = true
     @State var shouldShowOnboarding: Bool = true
     
     @State private var title: String = ""
@@ -71,6 +72,30 @@ struct ContentView: View {
         }
     }
     
+    private func updateTask(_ task: Task) {
+        task.isChecked.toggle()
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func deleteTask(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let task = allTask[index]
+            viewContext.delete(task)
+            
+            do {
+                try viewContext.save()
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView{
             VStack {
@@ -98,15 +123,24 @@ struct ContentView: View {
                                 .frame(width: 15, height: 15)
                             Spacer().frame(width: 20)
                             Text(task.title ?? "")
+                                .foregroundColor(task.isChecked ? .gray: .black)
+                                .strikethrough(task.isChecked)
+                            Spacer()
+                            Image(systemName: task.isChecked ? "checkmark.circle.fill" : "checkmark.circle")
+                                .foregroundColor(task.isChecked ? .green : .gray)
+                                .onTapGesture {
+                                    updateTask(task)
+                                }
                         }
-                    }
+                    }.onDelete(perform: deleteTask)
                     
                 }
                 
                 Spacer()
             }
             .padding()
-            .navigationTitle("All Tasks")
+            .navigationTitle("All Lists 📋")
+
         }
 //        .fullScreenCover(isPresented: $shouldShowOnboarding, content: { OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
 //

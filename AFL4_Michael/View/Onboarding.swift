@@ -26,9 +26,9 @@ struct OnboardingView: View {
             .font(.system(size: 32))
             .padding()
             Label(
-                title:{ Text("Edit your list")
+                title:{ Text("Checked your list")
                     .font(.system(size: 20))},
-                icon:{ Image(systemName: "square.and.pencil")})
+                icon:{ Image(systemName: "checkmark")})
                 .font(.system(size: 32))
                 .padding()
             Label(
@@ -41,7 +41,7 @@ struct OnboardingView: View {
                 shouldShowOnboarding.toggle()
             },label: {
                 Text("Get Started")
-                    .foregroundColor(.mint)
+                    .foregroundColor(.white)
                     .font(.headline)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)

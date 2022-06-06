@@ -45,7 +45,7 @@ struct OnboardingView: View {
                     .font(.headline)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .background(.black)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color.mint, Color.cyan, Color.mint]), startPoint:  .leading, endPoint: .trailing))
                     .cornerRadius(20)
                 
             })

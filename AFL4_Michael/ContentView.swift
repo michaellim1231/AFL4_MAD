@@ -39,6 +39,8 @@ struct ContentView: View {
     
     @State private var selectedPriority: Priority = .medium
     
+    @State var showSheet: Bool = false
+    
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(entity: Task.entity(), sortDescriptors: [NSSortDescriptor(key: "dateCreated", ascending: false)]) private var allTask: FetchedResults<Task>
@@ -99,21 +101,50 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack {
-                TextField("Enter title", text: $title)
-                    .textFieldStyle(.roundedBorder)
-                Picker("Priority", selection: $selectedPriority) {
-                    ForEach(Priority.allCases) { priority in
-                        Text(priority.title).tag(priority)
-                    }
-                }.pickerStyle(.segmented)
                 
-                Button("Save") {
-                    saveTask()
-                }.padding(10)
-                    .frame(maxWidth: .infinity)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color.mint, Color.cyan, Color.mint]), startPoint:  .leading, endPoint: .trailing))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                Button{
+                    showSheet.toggle()
+                } label: {
+                    Text("Add")
+                        .padding(10)
+                        .frame(maxWidth: .infinity)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.mint, Color.cyan, Color.mint]), startPoint:  .leading, endPoint: .trailing))
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                }
+                .halfSheet(showSheet: $showSheet){
+                    
+                    ZStack{
+                        Color.white
+                        
+                        VStack{
+                            TextField("Enter title", text: $title)
+                                .textFieldStyle(.roundedBorder)
+                                .frame(maxWidth: 400)
+                            
+                            Picker("Priority", selection: $selectedPriority) {
+                                ForEach(Priority.allCases) { priority in
+                                    Text(priority.title).tag(priority)
+                                }
+                            }.pickerStyle(.segmented)
+                                .padding()
+                            Button{
+                                saveTask()
+                            } label: {
+                                Text("Save")
+                                    .padding(10)
+                                        .frame(maxWidth: 200)
+                                        .background(LinearGradient(gradient: Gradient(colors: [Color.mint, Color.cyan, Color.mint]), startPoint:  .leading, endPoint: .trailing))
+                                        .foregroundColor(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                            }
+                        }
+                            
+                        }
+                    }
+
+
+
                 
                 List {
                     ForEach(allTask) { task in
@@ -134,17 +165,18 @@ struct ContentView: View {
                         }
                     }.onDelete(perform: deleteTask)
                     
-                }
+                }.cornerRadius(20)
+                
                 
                 Spacer()
             }
             .padding()
-            .navigationTitle("All Lists 📋")
+            .navigationTitle("All Lists")
 
         }
-//        .fullScreenCover(isPresented: $shouldShowOnboarding, content: { OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
-//
-//        })
+        .fullScreenCover(isPresented: $shouldShowOnboarding, content: { OnboardingView(shouldShowOnboarding: $shouldShowOnboarding)
+
+        })
     }
 }
 
@@ -152,5 +184,59 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let persistedContainer = CoreDataManager.shared.persistentContainer
         ContentView().environment(\.managedObjectContext, persistedContainer.viewContext)
+    }
+}
+
+extension View{
+    
+    func halfSheet<SheetView: View>(showSheet: Binding<Bool>,@ViewBuilder
+                                    sheetView: @escaping ()->SheetView)-> some View{
+        
+        return self
+            .background(
+                HalfSheetHelper(sheetView: sheetView(), showSheet: showSheet)
+            )
+    }
+}
+
+
+struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable{
+    
+    var sheetView: SheetView
+    @Binding var showSheet: Bool
+    let controller = UIViewController()
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        controller.view.backgroundColor = .clear
+        
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+        let sheetController = CustomHostingController(rootView: sheetView)
+        if showSheet{
+            uiViewController.present(sheetController, animated: true)
+            
+            DispatchQueue.main.async {
+                self.showSheet.toggle()
+            }
+        }
+    }
+}
+
+class CustomHostingController<Content: View>: UIHostingController<Content>{
+    
+    override func viewDidLoad() {
+        
+        
+        if let presentationController = presentationController as?
+            UISheetPresentationController{
+            
+            presentationController.detents = [
+                .medium()]
+            
+            presentationController.prefersGrabberVisible = true
+        }
     }
 }

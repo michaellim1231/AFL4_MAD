@@ -32,8 +32,8 @@ extension Priority {
     }
 }
 struct ContentView: View {
-//    @AppStorage("_shouldShowOnboarding") var shouldShowOnboarding: Bool = true
-    @State var shouldShowOnboarding: Bool = true
+    @AppStorage("_shouldShowOnboarding") var shouldShowOnboarding: Bool = true
+//    @State var shouldShowOnboarding: Bool = true
     
     @State private var title: String = ""
     
@@ -118,6 +118,7 @@ struct ContentView: View {
                         Color.white
                         
                         VStack{
+
                             TextField("Enter title", text: $title)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(maxWidth: 400)
@@ -133,14 +134,17 @@ struct ContentView: View {
                             } label: {
                                 Text("Save")
                                     .padding(10)
-                                        .frame(maxWidth: 200)
+                                        .frame(maxWidth: 300)
                                         .background(LinearGradient(gradient: Gradient(colors: [Color.mint, Color.cyan, Color.mint]), startPoint:  .leading, endPoint: .trailing))
                                         .foregroundColor(.white)
                                         .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+
                             }
+                            .padding(50)
                         }
-                            
+                        
                         }
+
                     }
 
 
